@@ -3,7 +3,7 @@ from database import db
 class Paciente(db.Model):
     __tablename__ = "pacientes"
     
-    id_medico = db.Column(db.Integer, primary_key=True)
+    id_paciente = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(80), nullable=False)
     edad = db.Column(db.Integer, nullable=False)
     direccion = db.Column(db.String(200))
