@@ -1,0 +1,42 @@
+from database import db
+
+class Medico(db.Table):
+    __tablename__ = "medicos"
+    
+    id_medico = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(80), nullable=False)
+    especialidad = db.Column(db.String(80), nullable=False)
+    telefono = db.Column(db.Integer, nullable=False)
+    correo = db.Column(db.Integer, nullable=False)
+    
+    def __init__(self, id_medico, nombre, especialidad, telefono, correo):
+        self.id_medico = id_medico
+        self.nombre = nombre
+        self.especialidad = especialidad
+        self.telefono = telefono
+        self.correo = correo
+    
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+        
+    @staticmethod
+    def get_all_medics():
+        return Medico.query.all()
+    @staticmethod
+    def get_medic(id):
+        return Medico.query.get(id)
+    
+    def update(self, nombre=None, especialidad=None, telefono=None, correo=None):
+        if nombre:
+            self.nombre = nombre
+        if especialidad:
+            self.especialidad = especialidad
+        if telefono:
+            self.telefono = telefono
+        if correo:
+            self.correo = correo
+            
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
