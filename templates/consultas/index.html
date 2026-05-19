@@ -29,6 +29,7 @@
             <th>Diagnostico</th>
             <th>Tratameiento</th>
             <th>Medico</th>
+            <th>Especialidad</th>
             <th>Paciente</th>
             <th>Acciones</th>
         </tr>
@@ -42,6 +43,7 @@
             <td>{{ consulta.diagnostico }}</td>
             <td>{{ consulta.tratamiento }}</td>
             <td>{{ consulta.medico.nombre }}</td>
+            <td>{{ consulta.medico.especialidad }}</td>
             <td>{{ consulta.paciente.nombre }}</td>
             <td>
                 <a href="{{ url_for('consulta.edit_consult', id_consult=consulta.id_consulta) }}"
