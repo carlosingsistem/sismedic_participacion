@@ -8,3 +8,6 @@ def create_patient():
 
 def edit_patient(paciente):
     return render_template("pacientes/edit.html", paciente=paciente)
+
+def medical_history(paciente, consultas):
+    return render_template("pacientes/historial.html", paciente=paciente, consultas=consultas)
