@@ -41,3 +41,10 @@ def delete_patient(id_patient):
     paciente = Paciente.get_by_id(id_patient)
     paciente.delete()
     return redirect(url_for("paciente.index"))  
+
+@paciente_bp.route('/historial/<int:id_patient>')
+def medical_history(id_patient):
+    paciente = Paciente.get_by_id(id_patient)
+    # Gracias a backref='paciente', podemos acceder directamente a sus consultas
+    consultas = paciente.consultas 
+    return paciente_views.medical_history(paciente, consultas)
