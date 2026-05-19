@@ -9,8 +9,12 @@ consulta_bp = Blueprint("consulta", __name__, url_prefix="/consultas")
 
 @consulta_bp.route("/")
 def index():
-    consultas=Consulta.get_all()
-    return consulta_views.list_consults(consultas)
+    #consultas=Consulta.get_all()
+    fecha_inicio = request.args.get('fecha_inicio')
+    fecha_fin = request.args.get('fecha_fin')
+    consultas = Consulta.get_by_date(fecha_inicio=fecha_inicio,fecha_fin=fecha_fin)
+    
+    return consulta_views.list_consults(consultas, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin)
 
 @consulta_bp.route("/create", methods=["GET", "POST"])
 def create_consult():
