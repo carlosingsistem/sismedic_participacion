@@ -9,6 +9,8 @@ class Medico(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     correo = db.Column(db.String(120), nullable=False, unique=True)
     
+    consultas = db.relationship("Consulta", back_populates="medico", cascade="all, delete-orphan")
+    
     
     def __init__(self, nombre, especialidad, telefono, correo):
         self.nombre = nombre
