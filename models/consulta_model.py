@@ -33,10 +33,11 @@ class Consulta(db.Model):
     @staticmethod
     def get_by_date(fecha_inicio=None, fecha_fin=None):
         query = Consulta.query
-        
+        # Si se reciben fechas de inicio y fin, se convierten a formato date
         if fecha_inicio and fecha_fin:
             fecha_inicio_format = datetime.strptime(fecha_inicio, "%Y-%m-%d").date()
             fecha_fin_format = datetime.strptime(fecha_fin, "%Y-%m-%d").date()
+            #aplicamos un filtro para obtener solo las consultas en ese rango y func.date para convertir esa fecha en el formato date
             query = query.filter(func.date(Consulta.fecha) >= fecha_inicio_format, func.date(Consulta.fecha) <= fecha_fin_format)
             
         return query.order_by(Consulta.fecha).all()

@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from database import db
 from controllers import medico_conroller, paciente_controller, consulta_controller
 
@@ -13,7 +13,7 @@ app.register_blueprint(consulta_controller.consulta_bp)
 
 @app.route("/")
 def home():
-    return "<h1>Aplicacion Medic</h1>"
+    return render_template("index.html")
 
 @app.context_processor
 def inject_active_route():
