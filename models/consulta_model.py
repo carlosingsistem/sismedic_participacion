@@ -1,4 +1,6 @@
 from database import db
+from datetime import datetime
+from sqlalchemy import func
 
 class Consulta(db.Model):
     __tablename__ = "consultas"
@@ -27,6 +29,17 @@ class Consulta(db.Model):
     @staticmethod
     def get_by_id(id):
         return Consulta.query.get(id)
+    
+    @staticmethod
+    def get_by_date(fecha_inicio=None, fecha_fin=None):
+        query = Consulta.query
+        
+        if fecha_inicio and fecha_fin:
+            fecha_inicio_format = datetime.strptime(fecha_inicio, "%Y-%m-%d").date()
+            fecha_fin_format = datetime.strptime(fecha_fin, "%Y-%m-%d").date()
+            query = query.filter(func.date(Consulta.fecha) >= fecha_inicio_format, func.date(Consulta.fecha) <= fecha_fin_format)
+            
+        return query.order_by(Consulta.fecha).all()
     
     def save(self):
         db.session.add(self)
