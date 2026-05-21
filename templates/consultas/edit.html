@@ -26,7 +26,7 @@
                 <select class="form-select" name="id_medico" id="id_medico">
                     <option value="">-- Select --</option>
                     {% for medico in medicos %}
-                        <option value="{{ medico.id_medico }} - {{ medico.especialidad }}" {% if consulta.id_medico == medico.id_medico %}selected{% endif %}>{{ medico.nombre }}</option>
+                        <option value="{{ medico.id_medico }}" {% if consulta.id_medico == medico.id_medico %}selected{% endif %}>{{ medico.nombre }} - {{ medico.especialidad }}</option>
                     {% endfor %}
                 </select>
             </div>
