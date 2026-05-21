@@ -27,7 +27,7 @@
             <th>ID</th>
             <th>Fecha</th>
             <th>Diagnostico</th>
-            <th>Tratameiento</th>
+            <th>Tratamiento</th>
             <th>Medico</th>
             <th>Especialidad</th>
             <th>Paciente</th>
@@ -39,7 +39,7 @@
         <tr>
             <td>{{ loop.index }}</td>
             <td>{{ consulta.id_consulta }}</td>
-            <td>{{ consulta.fecha.strftime('%d/%m/%Y') }}</td>
+            <td>{{ consulta.fecha.strftime('%d/%m/%Y') }}</td> <!-- Formateamos la fecha para darle el formato deseado -->
             <td>{{ consulta.diagnostico }}</td>
             <td>{{ consulta.tratamiento }}</td>
             <td>{{ consulta.medico.nombre }}</td>

@@ -4,9 +4,9 @@ from models.medico_model import Medico
 from models.paciente_model import Paciente 
 from views import consulta_views
 from datetime import datetime
-
+# Creamos el blueprint con nombre consulta y el prefijo consultas
 consulta_bp = Blueprint("consulta", __name__, url_prefix="/consultas")
-
+# Para listar las consultas
 @consulta_bp.route("/")
 def index():
     #consultas=Consulta.get_all()
@@ -16,6 +16,7 @@ def index():
     
     return consulta_views.list_consults(consultas, fecha_inicio=fecha_inicio, fecha_fin=fecha_fin)
 
+# Para crear una consulta
 @consulta_bp.route("/create", methods=["GET", "POST"])
 def create_consult():
     if request.method == "POST":
@@ -35,6 +36,7 @@ def create_consult():
     
     return consulta_views.create_consult(medicos, pacientes)
 
+# Para editar una consulta mandandole su id
 @consulta_bp.route("/edit/<int:id_consult>", methods=["GET", "POST"])
 def edit_consult(id_consult):
     consulta = Consulta.get_by_id(id_consult)
@@ -54,6 +56,7 @@ def edit_consult(id_consult):
     
     return consulta_views.edit_consult(consulta, medicos, pacientes)    
 
+#Eliminar una consulta por id
 @consulta_bp.route("/delete/<int:id_consult>")
 def delete_consult(id_consult):
     consulta = Consulta.get_by_id(id_consult)
